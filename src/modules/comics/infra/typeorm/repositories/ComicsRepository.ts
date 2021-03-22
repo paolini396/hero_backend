@@ -12,6 +12,17 @@ class ComicsRepository implements IComicsRepository {
     this.ormRepository = getRepository(Comic);
   }
 
+  public async list(): Promise<Comic[]> {
+    const comics = await this.ormRepository.find({
+      order: {
+        title: 'ASC',
+        id: 'DESC',
+      },
+    });
+
+    return comics;
+  }
+
   public async findByMarvelId(marvel_id: number): Promise<Comic | undefined> {
     const findMarvelId = await this.ormRepository.findOne({
       where: { marvel_id },

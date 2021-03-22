@@ -16,7 +16,7 @@ interface IRequest {
 class CreateComicService {
   constructor(
     @inject('ComicsRepository')
-    private usersRepository: IComicsRepository,
+    private comicsRepository: IComicsRepository,
   ) {}
 
   public async execute({
@@ -25,7 +25,7 @@ class CreateComicService {
     description,
     image_url,
   }: IRequest): Promise<Comic> {
-    const checkComicExists = await this.usersRepository.findByMarvelId(
+    const checkComicExists = await this.comicsRepository.findByMarvelId(
       marvel_id,
     );
 
@@ -33,7 +33,7 @@ class CreateComicService {
       throw new AppError('Comic already exist.');
     }
 
-    const comic = await this.usersRepository.create({
+    const comic = await this.comicsRepository.create({
       marvel_id,
       title,
       description,
