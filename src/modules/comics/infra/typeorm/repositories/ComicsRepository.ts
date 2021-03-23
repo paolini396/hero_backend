@@ -23,6 +23,12 @@ class ComicsRepository implements IComicsRepository {
     return comics;
   }
 
+  public async findById(id: string): Promise<Comic | undefined> {
+    const findComic = await this.ormRepository.findOne(id);
+
+    return findComic;
+  }
+
   public async findByMarvelId(marvel_id: number): Promise<Comic | undefined> {
     const findMarvelId = await this.ormRepository.findOne({
       where: { marvel_id },
@@ -32,11 +38,11 @@ class ComicsRepository implements IComicsRepository {
   }
 
   public async create(data: ICreateComicDTO): Promise<Comic> {
-    const user = this.ormRepository.create(data);
+    const comic = this.ormRepository.create(data);
 
-    await this.ormRepository.save(user);
+    await this.ormRepository.save(comic);
 
-    return user;
+    return comic;
   }
 }
 

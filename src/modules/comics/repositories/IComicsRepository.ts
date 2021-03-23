@@ -5,4 +5,5 @@ export default interface IComicsRepository {
   create(data: ICreateComicDTO): Promise<Comic>;
   findByMarvelId(marvel_id: number): Promise<Comic | undefined>;
   list(): Promise<Comic[]>;
+  findById(id: string): Promise<Comic | undefined>;
 }
