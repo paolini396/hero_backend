@@ -9,5 +9,6 @@ const charactersController = new CharactersController();
 
 charactersRouter.post('/', ensureAuthenticated, charactersController.create);
 charactersRouter.get('/', ensureAuthenticated, charactersController.list);
+charactersRouter.get('/:id', ensureAuthenticated, charactersController.show);
 
 export default charactersRouter;

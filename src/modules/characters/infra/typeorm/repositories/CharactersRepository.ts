@@ -23,6 +23,12 @@ class CharactersRepository implements ICharactersRepository {
     return characters;
   }
 
+  public async findById(id: string): Promise<Character | undefined> {
+    const findCharacter = await this.ormRepository.findOne(id);
+
+    return findCharacter;
+  }
+
   public async findByMarvelId(
     marvel_id: number,
   ): Promise<Character | undefined> {
