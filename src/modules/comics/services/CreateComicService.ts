@@ -25,22 +25,26 @@ class CreateComicService {
     description,
     image_url,
   }: IRequest): Promise<Comic> {
-    const checkComicExists = await this.comicsRepository.findByMarvelId(
-      marvel_id,
-    );
+    try {
+      const checkComicExists = await this.comicsRepository.findByMarvelId(
+        marvel_id,
+      );
 
-    if (checkComicExists) {
-      throw new AppError('Comic already exist.');
+      if (checkComicExists) {
+        throw new AppError('Comic already exist.');
+      }
+
+      const comic = await this.comicsRepository.create({
+        marvel_id,
+        title,
+        description,
+        image_url,
+      });
+
+      return comic;
+    } catch (err) {
+      throw new AppError(err.message);
     }
-
-    const comic = await this.comicsRepository.create({
-      marvel_id,
-      title,
-      description,
-      image_url,
-    });
-
-    return comic;
   }
 }
 

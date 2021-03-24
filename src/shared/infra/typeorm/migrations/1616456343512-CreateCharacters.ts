@@ -26,10 +26,12 @@ export default class CreateCharacters1616456343512
           {
             name: 'description',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'image_url',
             type: 'varchar',
+            isNullable: true,
           },
           {
             name: 'created_at',
@@ -47,6 +49,6 @@ export default class CreateCharacters1616456343512
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('Characters');
+    await queryRunner.dropTable('characters');
   }
 }
