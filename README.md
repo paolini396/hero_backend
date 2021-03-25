@@ -28,7 +28,7 @@ To clone and run this application, you'll need [Git](https://git-scm.com), [Node
 
 ```bash
 # Clone this repository
-$ git clone https://github.com/paolini396/session.git
+$ git clone https://github.com/paolini396/hero_backend.git
 
 # Go into the repository
 $ cd hero_backend
