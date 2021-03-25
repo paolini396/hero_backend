@@ -28,7 +28,7 @@ export default class processAllComicsController {
           title: result.title,
           description: result.description,
           marvel_id: result.id,
-          image_url: result.images[0]?.path,
+          image_url: result.thumbnail?.path,
         });
       }
 
