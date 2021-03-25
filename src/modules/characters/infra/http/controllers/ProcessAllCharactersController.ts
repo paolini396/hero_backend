@@ -28,6 +28,7 @@ export default class processAllCharactersController {
           name: result.name,
           description: result.description,
           image_url: result.thumbnail.path,
+          extension: result.thumbnail.extension,
           marvel_id: result.id,
         });
       }

@@ -10,6 +10,7 @@ interface IRequest {
   title: string;
   description: string;
   image_url: string;
+  extension: string;
 }
 
 @injectable()
@@ -24,6 +25,7 @@ class CreateComicService {
     title,
     description,
     image_url,
+    extension,
   }: IRequest): Promise<Comic> {
     try {
       const checkComicExists = await this.comicsRepository.findByMarvelId(
@@ -39,6 +41,7 @@ class CreateComicService {
         title,
         description,
         image_url,
+        extension,
       });
 
       return comic;

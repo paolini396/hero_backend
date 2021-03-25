@@ -17,7 +17,6 @@ class ListCharacterService {
   ) {}
 
   public async execute({ search }: IRequest): Promise<Character[]> {
-    console.log({ search });
     const characters = await this.charactersRepository.list();
 
     return characters;

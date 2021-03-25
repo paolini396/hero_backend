@@ -10,6 +10,7 @@ interface IRequest {
   name: string;
   description: string;
   image_url: string;
+  extension: string;
 }
 
 @injectable()
@@ -24,6 +25,7 @@ class CreateCharacterService {
     name,
     description,
     image_url,
+    extension,
   }: IRequest): Promise<Character> {
     const checkCharacterExists = await this.charactersRepository.findByMarvelId(
       marvel_id,
@@ -38,6 +40,7 @@ class CreateCharacterService {
       name,
       description,
       image_url,
+      extension,
     });
 
     return character;

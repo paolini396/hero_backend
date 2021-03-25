@@ -34,6 +34,11 @@ export default class CreateCharacters1616456343512
             isNullable: true,
           },
           {
+            name: 'extension',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',

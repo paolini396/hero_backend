@@ -3,4 +3,5 @@ export default interface ICreateCharacterDTO {
   name: string;
   description: string;
   image_url: string;
+  extension: string;
 }

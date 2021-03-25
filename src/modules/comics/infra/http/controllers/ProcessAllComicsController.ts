@@ -29,6 +29,7 @@ export default class processAllComicsController {
           description: result.description,
           marvel_id: result.id,
           image_url: result.thumbnail?.path,
+          extension: result.thumbnail?.extension,
         });
       }
 

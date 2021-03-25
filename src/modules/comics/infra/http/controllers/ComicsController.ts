@@ -29,7 +29,13 @@ export default class ComicsController {
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const { marvel_id, title, description, image_url } = request.body;
+    const {
+      marvel_id,
+      title,
+      description,
+      image_url,
+      extension,
+    } = request.body;
 
     const createService = container.resolve(CreateComicService);
 
@@ -38,6 +44,7 @@ export default class ComicsController {
       title,
       description,
       image_url,
+      extension,
     });
 
     return response.json({ comic });

@@ -23,6 +23,9 @@ class Comic {
   @Column()
   image_url: string;
 
+  @Column()
+  extension: string;
+
   @CreateDateColumn()
   created_at: Date;
 

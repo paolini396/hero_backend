@@ -29,7 +29,7 @@ export default class CharactersController {
   }
 
   public async create(request: Request, response: Response): Promise<Response> {
-    const { marvel_id, name, description, image_url } = request.body;
+    const { marvel_id, name, description, image_url, extension } = request.body;
 
     const createService = container.resolve(CreateCharacterService);
 
@@ -38,6 +38,7 @@ export default class CharactersController {
       name,
       description,
       image_url,
+      extension,
     });
 
     return response.json({ character });

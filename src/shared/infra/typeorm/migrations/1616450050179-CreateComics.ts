@@ -33,6 +33,11 @@ export default class CreateComics1616450050179 implements MigrationInterface {
             isNullable: true,
           },
           {
+            name: 'extension',
+            type: 'varchar',
+            isNullable: true,
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',
