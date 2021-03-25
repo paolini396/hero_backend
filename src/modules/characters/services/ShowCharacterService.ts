@@ -20,7 +20,7 @@ class ShowCharacterService {
     const character = await this.charactersRepository.findById(id);
 
     if (!character) {
-      throw new AppError('Character not found');
+      throw new AppError('Comic não encontrado.');
     }
 
     return character;

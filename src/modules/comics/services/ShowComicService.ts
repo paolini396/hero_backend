@@ -20,7 +20,7 @@ class ShowComicService {
     const comic = await this.comicsRepository.findById(id);
 
     if (!comic) {
-      throw new AppError('Comic not found');
+      throw new AppError('Comic não encontrado.');
     }
 
     return comic;

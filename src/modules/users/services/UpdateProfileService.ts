@@ -34,13 +34,13 @@ class UpdateProfileService {
     const user = await this.usersRepository.findById(user_id);
 
     if (!user) {
-      throw new AppError('User not found');
+      throw new AppError('Usuário não encontrado.');
     }
 
     const userWithUpdatedEmail = await this.usersRepository.findByEmail(email);
 
     if (userWithUpdatedEmail && userWithUpdatedEmail.id !== user_id) {
-      throw new AppError('E-mail already in use.');
+      throw new AppError('E-mail já em uso.');
     }
 
     user.name = name;
@@ -48,7 +48,7 @@ class UpdateProfileService {
 
     if (password && !old_password) {
       throw new AppError(
-        'You need to inform old password to set a new password.',
+        'É necessário informar a senha antiga para definir uma nova.',
       );
     }
 
@@ -59,7 +59,7 @@ class UpdateProfileService {
       );
 
       if (!checkOldPassword) {
-        throw new AppError('Old password does not match.');
+        throw new AppError('Senha antiga não confere.');
       }
 
       user.password = await this.hashProvider.generateHash(password);

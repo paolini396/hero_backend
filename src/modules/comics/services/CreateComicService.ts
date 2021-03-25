@@ -31,7 +31,7 @@ class CreateComicService {
       );
 
       if (checkComicExists) {
-        throw new AppError('Comic already exist.');
+        throw new AppError('Comic já existe.');
       }
 
       const comic = await this.comicsRepository.create({

@@ -30,7 +30,7 @@ class CreateCharacterService {
     );
 
     if (checkCharacterExists) {
-      throw new AppError('Character already exist.');
+      throw new AppError('Character já existe.');
     }
 
     const character = await this.charactersRepository.create({
