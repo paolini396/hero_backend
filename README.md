@@ -2,18 +2,7 @@
 
 ![](src/config/hero.png)
 
-### projetos de quadrinhos e personagens
-
-[Technologies](#rocket-technologies)
-&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-[How To Use](#information_source-how-to-use)
-
-</div>
-<div align="center">
-
-# Hero 🦸
-
-### projetos de quadrinhos e personagens
+### project comics and characters
 
 [Technologies](#rocket-technologies)
 &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
