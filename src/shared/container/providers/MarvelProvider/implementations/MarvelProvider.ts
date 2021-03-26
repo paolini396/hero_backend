@@ -1,32 +1,25 @@
-import { injectable, inject } from 'tsyringe';
-
-import IHashProvider from '@shared/container/providers/HashProvider/models/IHashProvider';
+import md5 from 'md5';
 
 import apiMarvel from '@config/marvel';
 
 import IMarvelProvider from '../models/IMarvelProvider';
 
-@injectable()
 class MarvelProvider implements IMarvelProvider {
-  constructor(
-    @inject('HashProvider')
-    private hashProvider: IHashProvider,
-  ) {}
-
   public async marvelKeys(): Promise<void> {
-    const hashMarvel = await this.hashProvider.generateHash(
-      `${process.env.MARVEL_TS}${process.env.MARVEL_API_PUBLIC_KEY}${process.env.MARVEL_API_PRIVATE_KEY}
-    `,
-    );
+    const ts = Date.now().toString();
+    const toHash =
+      ts +
+      process.env.MARVEL_API_PRIVATE_KEY +
+      process.env.MARVEL_API_PUBLIC_KEY;
 
-    console.log({ hashMarvel });
+    const hash = md5(toHash);
 
     apiMarvel.interceptors.request.use(config => {
       const auxConfig = config;
       auxConfig.params = auxConfig.params || {};
-      auxConfig.params.ts = process.env.MARVEL_TS;
+      auxConfig.params.ts = ts;
       auxConfig.params.apikey = process.env.MARVEL_API_PUBLIC_KEY;
-      auxConfig.params.hash = process.env.MARVEL_API_HASH;
+      auxConfig.params.hash = hash;
       return config;
     });
   }

@@ -1,7 +1,5 @@
 import { injectable, inject } from 'tsyringe';
 
-// import AppError from '@shared/errors/AppError';
-
 import Comic from '../infra/typeorm/entities/Comic';
 import IComicsRepository from '../repositories/IComicsRepository';
 
@@ -17,7 +15,6 @@ class ListComicService {
   ) {}
 
   public async execute({ search }: IRequest): Promise<Comic[]> {
-    console.log({ search });
     const comics = await this.comicsRepository.list();
 
     return comics;
