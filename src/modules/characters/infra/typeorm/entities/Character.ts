@@ -4,7 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
+  JoinColumn,
 } from 'typeorm';
+
+import UserCharacters from '@modules/users/infra/typeorm/entities/UserCharacters';
 
 @Entity('characters')
 class Character {
@@ -25,6 +29,10 @@ class Character {
 
   @Column()
   extension: string;
+
+  @OneToMany(() => UserCharacters, userCharacter => userCharacter.character)
+  @JoinColumn()
+  user_characters: UserCharacters[];
 
   @CreateDateColumn()
   created_at: Date;

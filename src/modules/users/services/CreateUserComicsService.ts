@@ -9,7 +9,7 @@ import UserComics from '../infra/typeorm/entities/UserComics';
 
 interface IComic {
   id: string;
-  name: string;
+  title?: string;
 }
 
 interface IRequest {

@@ -1,8 +1,10 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, In, Repository } from 'typeorm';
 
 import ICharactersRepository from '@modules/characters/repositories/ICharactersRepository';
 import ICreateCharacterDTO from '@modules/characters/dtos/ICreateCharacterDTO';
+import IFindCharactersDTO from '@modules/characters/dtos/IFindCharactersDTO';
 
+import AppError from '@shared/errors/AppError';
 import Character from '../entities/Character';
 
 class CharactersRepository implements ICharactersRepository {
@@ -37,6 +39,20 @@ class CharactersRepository implements ICharactersRepository {
     });
 
     return findMarvelId;
+  }
+
+  public async findAllById(
+    characters: IFindCharactersDTO[],
+  ): Promise<Character[]> {
+    const findCharacters = await this.ormRepository.find({
+      where: { id: In(characters.map(item => item.id)) },
+    });
+
+    if (findCharacters.length !== characters.length) {
+      throw new AppError('Um ou mais Characters não foram encontrados!');
+    }
+
+    return findCharacters;
   }
 
   public async create(data: ICreateCharacterDTO): Promise<Character> {

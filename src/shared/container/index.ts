@@ -18,6 +18,9 @@ import CharactersRepository from '@modules/characters/infra/typeorm/repositories
 import IUserComicsRepository from '@modules/users/repositories/IUserComicsRepository';
 import UserComicsRepository from '@modules/users/infra/typeorm/repositories/UserComicsRepository';
 
+import IUserCharactersRepository from '@modules/users/repositories/IUserCharactersRepository';
+import UserCharactersRepository from '@modules/users/infra/typeorm/repositories/UserCharactersRepository';
+
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',
   UsersRepository,
@@ -37,7 +40,13 @@ container.registerSingleton<ICharactersRepository>(
   'CharactersRepository',
   CharactersRepository,
 );
+
 container.registerSingleton<IUserComicsRepository>(
   'UserComicsRepository',
   UserComicsRepository,
+);
+
+container.registerSingleton<IUserCharactersRepository>(
+  'UserCharactersRepository',
+  UserCharactersRepository,
 );
