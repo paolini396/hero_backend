@@ -1,8 +1,10 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, In, Repository } from 'typeorm';
 
 import IComicsRepository from '@modules/comics/repositories/IComicsRepository';
 import ICreateComicDTO from '@modules/comics/dtos/ICreateComicDTO';
+import IFindComicsDTO from '@modules/comics/dtos/IFindComicsDTO';
 
+import AppError from '@shared/errors/AppError';
 import Comic from '../entities/Comic';
 
 class ComicsRepository implements IComicsRepository {
@@ -35,6 +37,18 @@ class ComicsRepository implements IComicsRepository {
     });
 
     return findMarvelId;
+  }
+
+  public async findAllById(comics: IFindComicsDTO[]): Promise<Comic[]> {
+    const findComics = await this.ormRepository.find({
+      where: { id: In(comics.map(item => item.id)) },
+    });
+
+    if (findComics.length !== comics.length) {
+      throw new AppError('Um ou mais Comics não foram encontrados!');
+    }
+
+    return findComics;
   }
 
   public async create(data: ICreateComicDTO): Promise<Comic> {
