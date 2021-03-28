@@ -33,7 +33,7 @@ class CreateUserComicsService {
   public async execute({
     user_id,
     comics,
-  }: IRequest): Promise<UserComics | undefined> {
+  }: IRequest): Promise<UserComics[] | undefined> {
     const comicIds = comics.map(comic => {
       return { id: comic.id };
     });

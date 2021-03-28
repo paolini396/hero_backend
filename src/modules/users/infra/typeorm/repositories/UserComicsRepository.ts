@@ -14,16 +14,21 @@ class UserComicsRepository implements IUserComicsRepository {
   public async create({
     user,
     user_comics,
-  }: ICreateUserComicsDTO): Promise<UserComics | undefined> {
-    const userComic = await this.ormRepository.create({
-      user_id: user.id,
-      comic_id: user_comics[0].id,
-      comic: user_comics[0],
+  }: ICreateUserComicsDTO): Promise<UserComics[] | undefined> {
+    const userComics = await user_comics.map(async user_comic => {
+      const createComic = await this.ormRepository.create({
+        comic_id: user_comic.id,
+        user_id: user.id,
+        comic: user_comic,
+      });
+
+      await this.ormRepository.save(createComic);
+      return createComic;
     });
 
-    await this.ormRepository.save(userComic);
+    const userComicsData = await Promise.all(userComics);
 
-    return userComic;
+    return userComicsData;
   }
 }
 
