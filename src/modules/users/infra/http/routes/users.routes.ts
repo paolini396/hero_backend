@@ -25,6 +25,16 @@ usersRouter.post(
   ensureAuthenticated,
   userCharactersController.create,
 );
+usersRouter.delete(
+  '/comics/:id',
+  ensureAuthenticated,
+  userComisController.destroy,
+);
+usersRouter.delete(
+  '/characters/:id',
+  ensureAuthenticated,
+  userCharactersController.destroy,
+);
 
 usersRouter.patch(
   '/avatar',

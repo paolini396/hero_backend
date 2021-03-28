@@ -30,6 +30,20 @@ class UserCharactersRepository implements IUserCharactersRepository {
 
     return userCharactersData;
   }
+
+  public async findById(id: string): Promise<UserCharacters | undefined> {
+    const findedUserCharacter = await this.ormRepository.findOne(id);
+
+    return findedUserCharacter;
+  }
+
+  public async destroy(id: string): Promise<UserCharacters | undefined> {
+    const userCharacter = await this.ormRepository.findOne(id);
+
+    await this.ormRepository.delete(id);
+
+    return userCharacter;
+  }
 }
 
 export default UserCharactersRepository;

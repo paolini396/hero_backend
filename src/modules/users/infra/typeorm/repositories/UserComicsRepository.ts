@@ -30,6 +30,20 @@ class UserComicsRepository implements IUserComicsRepository {
 
     return userComicsData;
   }
+
+  public async findById(id: string): Promise<UserComics | undefined> {
+    const findedUserComic = await this.ormRepository.findOne(id);
+
+    return findedUserComic;
+  }
+
+  public async destroy(id: string): Promise<UserComics | undefined> {
+    const userComic = await this.ormRepository.findOne(id);
+
+    await this.ormRepository.delete(id);
+
+    return userComic;
+  }
 }
 
 export default UserComicsRepository;
